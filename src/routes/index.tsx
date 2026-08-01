@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { MapBackdrop } from "@/components/ride/map-backdrop";
+import { DriverChatScreen } from "@/components/ride/driver-chat-screen";
 import {
   SelectRideSheet,
   SearchingSheet,
@@ -56,8 +57,10 @@ function RideFlow() {
           <DriverAcceptedSheet
             onCancel={() => setStep("reasons")}
             onStart={() => setStep("progress")}
+            onMessage={() => setStep("chat")}
           />
         )}
+        {step === "chat" && <DriverChatScreen onBack={() => setStep("accepted")} />}
         {step === "reasons" && (
           <CancelReasonsSheet
             onBack={() => setStep("accepted")}

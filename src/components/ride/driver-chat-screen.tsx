@@ -59,7 +59,7 @@ export function DriverChatScreen({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <div className="absolute inset-0 z-30 flex flex-col bg-card animate-in fade-in slide-in-from-bottom-4 duration-300">
+    <div className="absolute inset-0 z-30 flex flex-col bg-card animate-in fade-in slide-in-from-right duration-300">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-border bg-card px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
         <button
