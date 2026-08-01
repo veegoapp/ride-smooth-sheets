@@ -66,7 +66,7 @@ export function DriverChatScreen({ onBack }: { onBack: () => void }) {
           type="button"
           onClick={onBack}
           className="press flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-foreground ring-1 ring-border"
-          aria-label="Back"
+          aria-label="Back to ride"
         >
           <ArrowLeft className="h-5 w-5" strokeWidth={2.2} />
         </button>
