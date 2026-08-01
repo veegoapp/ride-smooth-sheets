@@ -272,9 +272,11 @@ export function SearchingSheet({ onCancel }: { onCancel: () => void }) {
 export function DriverAcceptedSheet({
   onCancel,
   onStart,
+  onMessage,
 }: {
   onCancel: () => void;
   onStart: () => void;
+  onMessage: () => void;
 }) {
   return (
     <SheetShell sheetKey="accepted">
@@ -331,7 +333,7 @@ export function DriverAcceptedSheet({
           <Phone className="h-4.5 w-4.5" strokeWidth={1.9} />
           Call
         </GhostButton>
-        <GhostButton>
+        <GhostButton onClick={onMessage}>
           <MessageSquareText className="h-4.5 w-4.5" strokeWidth={1.9} />
           Message
         </GhostButton>
