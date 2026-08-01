@@ -225,9 +225,13 @@ export function SearchingSheet({ onCancel }: { onCancel: () => void }) {
             className="absolute h-24 w-24 animate-sweep rounded-full"
             style={{
               background:
-                "conic-gradient(from 0deg, transparent 0deg, transparent 300deg, oklch(0.26 0.055 262 / 0.22) 360deg)",
+                "conic-gradient(from 0deg, oklch(0.26 0.055 262 / 0) 0deg, oklch(0.26 0.055 262 / 0) 270deg, oklch(0.26 0.055 262 / 0.35) 360deg)",
+              WebkitMaskImage:
+                "radial-gradient(closest-side, transparent 76%, black 78%, black 100%)",
+              maskImage: "radial-gradient(closest-side, transparent 76%, black 78%, black 100%)",
             }}
           />
+
           <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-float">
             <Car className="h-5.5 w-5.5 text-primary-foreground" strokeWidth={1.8} />
           </span>
