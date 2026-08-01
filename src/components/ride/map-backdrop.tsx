@@ -57,7 +57,7 @@ export function MapBackdrop({ carVisible = false }: { carVisible?: boolean }) {
       </div>
 
       {carVisible ? (
-        <div className="absolute left-[50%] top-[55%] -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute left-[42%] top-[30%] -translate-x-1/2 -translate-y-1/2">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-card shadow-float ring-1 ring-border">
             <Navigation
               className="h-4.5 w-4.5 rotate-45 text-primary"
