@@ -35,6 +35,7 @@ type Step =
   | "select"
   | "searching"
   | "accepted"
+  | "chat"
   | "reasons"
   | "confirm"
   | "progress"
