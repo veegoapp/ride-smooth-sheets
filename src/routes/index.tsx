@@ -1,24 +1,77 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { MapBackdrop } from "@/components/ride/map-backdrop";
+import {
+  SelectRideSheet,
+  SearchingSheet,
+  DriverAcceptedSheet,
+  CancelReasonsSheet,
+  CancelConfirmSheet,
+  InProgressSheet,
+  CompletedSheet,
+} from "@/components/ride/sheets";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Ride Flow — Premium Passenger Ride Booking UI" },
+      {
+        name: "description",
+        content:
+          "A polished ride-hailing passenger flow: choose a ride type, match with a driver, track the trip and rate it — all in elegant bottom sheets.",
+      },
+      { property: "og:title", content: "Ride Flow — Premium Passenger Ride Booking UI" },
+      {
+        property: "og:description",
+        content:
+          "Choose a ride type, match with a driver, track your trip and rate it — an elegant light-theme bottom sheet ride flow.",
+      },
+    ],
+  }),
+  component: RideFlow,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+type Step =
+  | "select"
+  | "searching"
+  | "accepted"
+  | "reasons"
+  | "confirm"
+  | "progress"
+  | "completed";
+
+function RideFlow() {
+  const [step, setStep] = useState<Step>("select");
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="flex min-h-screen justify-center bg-foreground/5">
+      <div className="relative h-screen w-full max-w-[520px] overflow-hidden bg-surface">
+        <h1 className="sr-only">Ride flow</h1>
+        <MapBackdrop carVisible={step === "accepted" || step === "progress"} />
+
+        {step === "select" && <SelectRideSheet onFindDriver={() => setStep("searching")} />}
+        {step === "searching" && <SearchingSheet onCancel={() => setStep("accepted")} />}
+        {step === "accepted" && (
+          <DriverAcceptedSheet
+            onCancel={() => setStep("reasons")}
+            onStart={() => setStep("progress")}
+          />
+        )}
+        {step === "reasons" && (
+          <CancelReasonsSheet
+            onBack={() => setStep("accepted")}
+            onConfirm={() => setStep("confirm")}
+          />
+        )}
+        {step === "confirm" && (
+          <CancelConfirmSheet
+            onSearchAgain={() => setStep("searching")}
+            onCancelRide={() => setStep("select")}
+          />
+        )}
+        {step === "progress" && <InProgressSheet onComplete={() => setStep("completed")} />}
+        {step === "completed" && <CompletedSheet onDone={() => setStep("select")} />}
+      </div>
+    </main>
   );
 }
