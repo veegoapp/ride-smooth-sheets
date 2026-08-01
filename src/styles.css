@@ -210,5 +210,30 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
 }
+
+@utility sheet-surface {
+  background-color: var(--card);
+  border-top-left-radius: 1.75rem;
+  border-top-right-radius: 1.75rem;
+  box-shadow: var(--shadow-sheet);
+}
+
+@utility press {
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+  &:active {
+    transform: scale(0.975);
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
